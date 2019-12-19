@@ -9,7 +9,7 @@
   <title>Document</title>
 </head>
 <body>
-  <input type="text" name="search" id="search" value="Filter Images">
+  <input type="text" name="search" id="search" value="Search Images">
   <div class="wrapper">
     <a data-fancybox="gallery" href="images/01.jpg" data-fancybox data-caption="I love hay bales. Took this snap on a drive through the countryside past some straw fields." title="Hay Bales">
       <img src="images/thumbnails/01.jpg">
@@ -54,10 +54,9 @@
     crossorigin="anonymous"></script>
     <script src="js/fancyBox/jquery.fancybox.min.js"></script>
     <script>
-      const $galleryImages = $('[data-caption]');
-      $('#search').on('keydown', function(){
+      $('#search').on('keyup', function(){
         // Get input value and store it in a variable and make it lower case
-        const $input = document.getElementById('search').value.toLowerCase();
+        const $input = $('#search').val().toLowerCase();
         $('a').each(function(index, element){
           const captions = $(element).attr('data-caption');
           if(captions.indexOf($input) > -1 ){
@@ -66,6 +65,13 @@
            $(element).addClass('hidden');
          }
         });
+      });
+      // Showing and hidding the default form value
+      $('#search').focus(function(){
+        $(this).attr('value', ' ');
+      });
+      $('#search').focusout(function(){
+        $(this).attr('value', 'Search Images')
       });
     </script>
 </body>
