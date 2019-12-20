@@ -58,10 +58,12 @@
         // Get input value and store it in a variable and make it lower case
         const $input = $('#search').val().toLowerCase();
         $('a').each(function(index, element){
+          //get captions and store them in variable captions
           const captions = $(element).attr('data-caption');
+          //test to see if captions contains searched term if it does show image
           if(captions.indexOf($input) > -1 ){
             $(element).removeClass('hidden');
-         }else{
+         }else{ //if it doesn't hide image
            $(element).addClass('hidden');
          }
         });
